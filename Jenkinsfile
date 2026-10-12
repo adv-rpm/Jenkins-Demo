@@ -17,15 +17,16 @@ pipeline {
                 echo 'Printing variables'
                 echo %BUILD_TOOL%
                 echo %PRJ%
+                echo %WORKSPACE%
                 '''
             }
         }
 
-        stage ('Build Project')
+        /*stage ('Build Project')
         {
             steps
             {
-                /*Clean and Build Project*/
+                //Clean and Build Project
                 bat '''
                 @echo off
                 echo 'Cleaning %PRJ%
@@ -38,7 +39,7 @@ pipeline {
             }
 
         }
-        /* stage('Test Stage')
+         stage('Test Stage')
         // {
         //     parallel
         //     {
