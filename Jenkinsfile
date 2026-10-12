@@ -3,7 +3,7 @@ pipeline {
     environment
     {
         BUILD_TOOL="C:\\Users\\HP\\AppData\\Local\\Keil_v5\\UV4\\UV4.exe"
-        PRJ="%WORKSPACE%\\Calc_Project.uvprojx"
+        PRJ="Calc_Project.uvprojx"
         BUILD_LOG="Build_log.txt"
     }
     stages
@@ -28,10 +28,10 @@ pipeline {
                 //Clean and Build Project
                 bat '''
                 @echo off
-                echo 'Cleaning %PRJ%
-                %BUILD_TOOL% -c %PRJ%
+                echo 'Cleaning %WORKSPACE%\\%PRJ%
+                %BUILD_TOOL% -c %WORKSPACE%\\%PRJ%
                 echo 'Building Project'
-                %BUILD_TOOL% -b %PRJ% -o %BUILD_LOG%
+                %BUILD_TOOL% -b %WORKSPACE%\\%PRJ% -o %BUILD_LOG%
                 echo %WORKSPACE%
 
                 '''
