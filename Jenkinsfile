@@ -32,6 +32,7 @@ pipeline {
                 %BUILD_TOOL% -c %PRJ%
                 echo 'Building Project'
                 %BUILD_TOOL% -b %PRJ% -o %BUILD_LOG%
+                echo %WORKSPACE%
 
                 '''
             }
