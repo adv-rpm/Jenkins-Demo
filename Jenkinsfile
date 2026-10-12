@@ -35,73 +35,74 @@ pipeline {
 
                 '''
             }
+
         }
-        stage('Test Stage')
-        {
-            parallel
-            {
-                stage('Static Analysis')
-                {
-                    steps
-                    {
-                    bat '''
-                    @echo off
-                    echo running Static tests
-                    '''
-                    }
-                    post
-                    {
-                        success
-                        {
-                        bat '''
-                        @echo off 
-                        echo Completed Static Testing
-                        '''
-                        }
-                    }
-                }
-                stage('Unit Test')
-                {
-                    steps
-                    {
-                    bat 'echo running Unit tests' 
-                    }
-                    post
-                    {
-                        success
-                        {
-                        bat 'echo Completed Unit Testing'
-                        }
-                    }
-                }
-                stage('Integration Test')
-                {
-                    steps
-                    {
-                    bat 'echo running Integration tests' 
-                    }
-                    post
-                    {
-                        success
-                        {
-                        bat 'echo Completed Integration Testing'
-                        }                    }
-                }
-                stage('Qualification Tests')
-                {
-                    steps
-                    {
-                    bat 'echo running Qualification tests' 
-                    }
-                    post
-                    {
-                        success
-                        {
-                        bat 'echo Completed Qualification Testing'
-                        }                    
-                    }
-                }
-            }
-        }
+        /* stage('Test Stage')
+        // {
+        //     parallel
+        //     {
+        //         stage('Static Analysis')
+        //         {
+        //             steps
+        //             {
+        //             bat '''
+        //             @echo off
+        //             echo running Static tests
+        //             '''
+        //             }
+        //             post
+        //             {
+        //                 success
+        //                 {
+        //                 bat '''
+        //                 @echo off 
+        //                 echo Completed Static Testing
+        //                 '''
+        //                 }
+        //             }
+        //         }
+        //         stage('Unit Test')
+        //         {
+        //             steps
+        //             {
+        //             bat 'echo running Unit tests' 
+        //             }
+        //             post
+        //             {
+        //                 success
+        //                 {
+        //                 bat 'echo Completed Unit Testing'
+        //                 }
+        //             }
+        //         }
+        //         stage('Integration Test')
+        //         {
+        //             steps
+        //             {
+        //             bat 'echo running Integration tests' 
+        //             }
+        //             post
+        //             {
+        //                 success
+        //                 {
+        //                 bat 'echo Completed Integration Testing'
+        //                 }                    }
+        //         }
+        //         stage('Qualification Tests')
+        //         {
+        //             steps
+        //             {
+        //             bat 'echo running Qualification tests' 
+        //             }
+        //             post
+        //             {
+        //                 success
+        //                 {
+        //                 bat 'echo Completed Qualification Testing'
+        //                 }                    
+        //             }
+        //         }
+        //     }
+         } */
     }
 }
