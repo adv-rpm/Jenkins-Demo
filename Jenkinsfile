@@ -42,8 +42,8 @@ pipeline {
                     @echo off
                     echo 'Build successful!'
                     '''
-                    archiveArtifacts artifacts: 'Build_log.txt',
-                                    fingerprint: true
+                    //archiveArtifacts artifacts: 'Build_log.txt',
+                    //                fingerprint: true
                 }
             }
 
