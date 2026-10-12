@@ -27,11 +27,13 @@ pipeline {
             {
                 //Clean and Build Project
                 bat '''
-                del %BUILD_LOG%
+                if exist %BUILD_LOG% del %BUILD_LOG%
                 echo 'Cleaning %WORKSPACE%\\%PRJ%
                 %BUILD_TOOL% -c %WORKSPACE%\\%PRJ%
                 echo 'Building Project'
                 %BUILD_TOOL% -b %WORKSPACE%\\%PRJ% -o %BUILD_LOG%
+
+                echo Keil Exit Code: %ERRORLEVEL%
                 '''
             }
             post
