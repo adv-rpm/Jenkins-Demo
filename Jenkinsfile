@@ -36,18 +36,6 @@ pipeline {
                 echo Keil Exit Code: %ERRORLEVEL%
                 '''
             }
-            post
-            {
-                success
-                {
-                    bat '''
-                    @echo off
-                    echo 'Build successful!'
-                    '''
-                    //archiveArtifacts artifacts: 'Build_log.txt',
-                    //                fingerprint: true
-                }
-            }
 
         }
         /* stage('Test Stage')
