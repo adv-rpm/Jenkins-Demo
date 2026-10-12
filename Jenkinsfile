@@ -27,6 +27,7 @@ pipeline {
             {
                 //Clean and Build Project
                 bat '''
+                del %BUILD_LOG%
                 echo 'Cleaning %WORKSPACE%\\%PRJ%
                 %BUILD_TOOL% -c %WORKSPACE%\\%PRJ%
                 echo 'Building Project'
