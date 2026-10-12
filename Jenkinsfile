@@ -34,6 +34,20 @@ pipeline {
                 %BUILD_TOOL% -b %WORKSPACE%\\%PRJ% -o %BUILD_LOG%
 
                 echo Keil Exit Code: %ERRORLEVEL%
+
+                findstr /C:"0 Error(s)" "%BUILD_LOG%" >nul
+
+                if errorlevel 1 (
+                echo BUILD FAILED
+                exit /b 1
+
+                ) else (
+
+                echo BUILD SUCCESSFUL
+
+                exit /b 0
+
+                )
                 '''
             }
 
