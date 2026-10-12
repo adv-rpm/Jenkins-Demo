@@ -51,6 +51,19 @@ pipeline {
                 '''
             }
 
+            post
+            {
+                success
+                {
+                    bat '''
+                    @echo off
+                    echo 'Build successful!'
+                    '''
+                    archiveArtifacts artifacts: '%BUILD_LOG%',
+                                    fingerprint: true
+                }
+            }
+
 
         }
         /* stage('Test Stage')
