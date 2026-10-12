@@ -32,8 +32,6 @@ pipeline {
                 %BUILD_TOOL% -c %WORKSPACE%\\%PRJ%
                 echo 'Building Project'
                 %BUILD_TOOL% -b %WORKSPACE%\\%PRJ% -o %BUILD_LOG%
-                echo %WORKSPACE%
-
                 '''
             }
             post
@@ -44,7 +42,7 @@ pipeline {
                     @echo off
                     echo 'Build successful!'
                     '''
-                    archiveArtifacts artifacts: '%WORKSPACE%\\%BUILD_LOG%, %WORKSPACE%/Objects/*.axf',
+                    archiveArtifacts artifacts: 'Build_log.txt, **/*.axf',
                                     fingerprint: true
                 }
             }
