@@ -4,7 +4,7 @@ pipeline {
     {
         BUILD_TOOL="C:\\Users\\HP\\AppData\\Local\\Keil_v5\\UV4\\UV4.exe"
         PRJ="Calc_Project.uvprojx"
-        BUILD_LOG="Build_log.txt"
+        BUILD_LOG="D:\\Prem\\Build_log.txt"
     }
     stages
     {
@@ -36,6 +36,7 @@ pipeline {
                 echo Keil Exit Code: %ERRORLEVEL%
                 '''
             }
+
 
         }
         /* stage('Test Stage')
