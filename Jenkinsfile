@@ -3,7 +3,7 @@ pipeline {
     environment
     {
         BUILD_TOOL="C:\\Users\\HP\\AppData\\Local\\Keil_v5\\UV4\\UV4.exe"
-        PRJ="D:\\03_WABCO_MOTIX\\00_Source_Code\\TLE989x_FOC_BASIC_Sensorless_Example\\FOC.uvprojx"
+        PRJ="\\Calc_Project.uvprojx"
         BUILD_LOG="Build_log.txt"
     }
     stages
@@ -16,13 +16,13 @@ pipeline {
                 @echo off
                 echo 'Printing variables'
                 echo %BUILD_TOOL%
-                echo %PRJ%
+                echo %PRJ%%WORKSPACE%
                 echo %WORKSPACE%
                 '''
             }
         }
 
-        /*stage ('Build Project')
+        stage ('Build Project')
         {
             steps
             {
@@ -39,7 +39,7 @@ pipeline {
             }
 
         }
-         stage('Test Stage')
+        /* stage('Test Stage')
         // {
         //     parallel
         //     {
