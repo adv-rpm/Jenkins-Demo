@@ -3,7 +3,7 @@ pipeline {
     environment
     {
         BUILD_TOOL="C:\\Users\\HP\\AppData\\Local\\Keil_v5\\UV4\\UV4.exe"
-        PRJ="\\Calc_Project.uvprojx"
+        PRJ="%WORKSPACE%\\Calc_Project.uvprojx"
         BUILD_LOG="Build_log.txt"
     }
     stages
@@ -16,8 +16,7 @@ pipeline {
                 @echo off
                 echo 'Printing variables'
                 echo %BUILD_TOOL%
-                echo %PRJ%%WORKSPACE%
-                echo %WORKSPACE%
+                echo %PRJ%
                 '''
             }
         }
@@ -36,6 +35,17 @@ pipeline {
                 echo %WORKSPACE%
 
                 '''
+            }
+            post
+            {
+                success
+                {
+                    bat '''
+                    @echo off
+                    echo 'Build successful!'
+                    '''
+                    archiveArtifacts artifacts: %WORKSPACE%\%BUILD_LOG%, %WORKSPACE%/Objects/*.axf
+                }
             }
 
         }
