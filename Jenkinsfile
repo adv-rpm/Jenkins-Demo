@@ -41,7 +41,7 @@ pipeline {
                     @echo off
                     echo 'Build successful!'
                     '''
-                    archiveArtifacts artifacts: 'Build_log.txt, **/*.axf',
+                    archiveArtifacts artifacts: 'Build_log.txt',
                                     fingerprint: true
                 }
             }
