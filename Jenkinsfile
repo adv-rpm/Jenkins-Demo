@@ -44,8 +44,8 @@ pipeline {
                     @echo off
                     echo 'Build successful!'
                     '''
-                    archiveArtifacts artifacts: '%WORKSPACE%\\%BUILD_LOG%, %WORKSPACE%/Objects/*.axf'
-                    fingerprint: true
+                    archiveArtifacts artifacts: '%WORKSPACE%\\%BUILD_LOG%, %WORKSPACE%/Objects/*.axf',
+                                    fingerprint: true
                 }
             }
 
