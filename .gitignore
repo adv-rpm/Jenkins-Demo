@@ -1,1 +1,25 @@
 /Objects/*.*
+
+#Visual Studio Cache
+Tests/.vs
+Tests/Debug/
+Tests/Release/
+Tests/x64
+Tests/x86
+
+#Visual Studio Generated Files
+
+
+# Visual Studio generated files
+Tests/*.pch
+Tests/*.ipch
+Tests/*.obj
+Tests/*.pdb
+Tests/*.ilk
+Tests/*.exe
+Tests/*.tlog
+Tests/*.idb
+Tests/*.log
+./Tests/packages/*.*
+./Tests/Debug/*.*
+./Tests/x64/*.*
