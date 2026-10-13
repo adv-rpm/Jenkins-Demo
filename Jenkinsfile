@@ -122,11 +122,13 @@ pipeline {
             {
                 always
                 {
-                    xunit (
+                    /*xunit (
                         tools: [
                             GoogleTest(pattern: 'Unit_Test.xml')
                         ]
-                    )
+                    )*/
+
+                    junit 'Unit_Test.xml'
                 }
             }
         }
