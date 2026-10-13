@@ -108,7 +108,7 @@ pipeline {
                     {
                         success
                         {
-                            archiveArtifacts artifacts: '\\Tests\\Calculator_Test_Proj\\x64\\Debug\\Calculator_Test_Proj.exe',
+                            archiveArtifacts artifacts: 'Tests\\Calculator_Test_Proj\\x64\\Debug\\Calculator_Test_Proj.exe',
                             fingerprint:true
                         }
                     }
