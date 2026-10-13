@@ -100,3 +100,79 @@ TEST(Multiplication_Tests, Mul_test_22) { EXPECT_EQ(multiply(20, 5), 100); }
 TEST(Multiplication_Tests, Mul_test_23) { EXPECT_EQ(multiply(12, 12), 144); }
 TEST(Multiplication_Tests, Mul_test_24) { EXPECT_EQ(multiply(-10, 5), -50); }
 TEST(Multiplication_Tests, Mul_test_25) { EXPECT_EQ(multiply(100, 20), 2000); }
+
+TEST(Limit_Value_Tests, Limit_test_1) { EXPECT_EQ(limit_value(-1000), 0); }
+TEST(Limit_Value_Tests, Limit_test_2) { EXPECT_EQ(limit_value(-500), 0); }
+TEST(Limit_Value_Tests, Limit_test_3) { EXPECT_EQ(limit_value(-100), 0); }
+TEST(Limit_Value_Tests, Limit_test_4) { EXPECT_EQ(limit_value(-50), 0); }
+TEST(Limit_Value_Tests, Limit_test_5) { EXPECT_EQ(limit_value(-10), 0); }
+TEST(Limit_Value_Tests, Limit_test_6) { EXPECT_EQ(limit_value(-5), 0); }
+TEST(Limit_Value_Tests, Limit_test_7) { EXPECT_EQ(limit_value(-2), 0); }
+TEST(Limit_Value_Tests, Limit_test_8) { EXPECT_EQ(limit_value(-1), 0); }
+
+TEST(Limit_Value_Tests, Limit_test_9) { EXPECT_EQ(limit_value(0), 0); }
+TEST(Limit_Value_Tests, Limit_test_10) { EXPECT_EQ(limit_value(1), 1); }
+TEST(Limit_Value_Tests, Limit_test_11) { EXPECT_EQ(limit_value(2), 2); }
+TEST(Limit_Value_Tests, Limit_test_12) { EXPECT_EQ(limit_value(5), 5); }
+TEST(Limit_Value_Tests, Limit_test_13) { EXPECT_EQ(limit_value(10), 10); }
+TEST(Limit_Value_Tests, Limit_test_14) { EXPECT_EQ(limit_value(15), 15); }
+TEST(Limit_Value_Tests, Limit_test_15) { EXPECT_EQ(limit_value(20), 20); }
+TEST(Limit_Value_Tests, Limit_test_16) { EXPECT_EQ(limit_value(25), 25); }
+TEST(Limit_Value_Tests, Limit_test_17) { EXPECT_EQ(limit_value(30), 30); }
+TEST(Limit_Value_Tests, Limit_test_18) { EXPECT_EQ(limit_value(35), 35); }
+TEST(Limit_Value_Tests, Limit_test_19) { EXPECT_EQ(limit_value(40), 40); }
+TEST(Limit_Value_Tests, Limit_test_20) { EXPECT_EQ(limit_value(45), 45); }
+TEST(Limit_Value_Tests, Limit_test_21) { EXPECT_EQ(limit_value(50), 50); }
+TEST(Limit_Value_Tests, Limit_test_22) { EXPECT_EQ(limit_value(55), 55); }
+TEST(Limit_Value_Tests, Limit_test_23) { EXPECT_EQ(limit_value(60), 60); }
+TEST(Limit_Value_Tests, Limit_test_24) { EXPECT_EQ(limit_value(65), 65); }
+TEST(Limit_Value_Tests, Limit_test_25) { EXPECT_EQ(limit_value(70), 70); }
+TEST(Limit_Value_Tests, Limit_test_26) { EXPECT_EQ(limit_value(75), 75); }
+TEST(Limit_Value_Tests, Limit_test_27) { EXPECT_EQ(limit_value(80), 80); }
+TEST(Limit_Value_Tests, Limit_test_28) { EXPECT_EQ(limit_value(85), 85); }
+TEST(Limit_Value_Tests, Limit_test_29) { EXPECT_EQ(limit_value(90), 90); }
+TEST(Limit_Value_Tests, Limit_test_30) { EXPECT_EQ(limit_value(91), 91); }
+TEST(Limit_Value_Tests, Limit_test_31) { EXPECT_EQ(limit_value(92), 92); }
+TEST(Limit_Value_Tests, Limit_test_32) { EXPECT_EQ(limit_value(93), 93); }
+TEST(Limit_Value_Tests, Limit_test_33) { EXPECT_EQ(limit_value(94), 94); }
+TEST(Limit_Value_Tests, Limit_test_34) { EXPECT_EQ(limit_value(95), 95); }
+TEST(Limit_Value_Tests, Limit_test_35) { EXPECT_EQ(limit_value(96), 96); }
+TEST(Limit_Value_Tests, Limit_test_36) { EXPECT_EQ(limit_value(97), 97); }
+TEST(Limit_Value_Tests, Limit_test_37) { EXPECT_EQ(limit_value(98), 98); }
+TEST(Limit_Value_Tests, Limit_test_38) { EXPECT_EQ(limit_value(99), 99); }
+TEST(Limit_Value_Tests, Limit_test_39) { EXPECT_EQ(limit_value(100), 100); }
+
+TEST(Limit_Value_Tests, Limit_test_40) { EXPECT_EQ(limit_value(101), 100); }
+TEST(Limit_Value_Tests, Limit_test_41) { EXPECT_EQ(limit_value(102), 100); }
+TEST(Limit_Value_Tests, Limit_test_42) { EXPECT_EQ(limit_value(105), 100); }
+TEST(Limit_Value_Tests, Limit_test_43) { EXPECT_EQ(limit_value(110), 100); }
+TEST(Limit_Value_Tests, Limit_test_44) { EXPECT_EQ(limit_value(120), 100); }
+TEST(Limit_Value_Tests, Limit_test_45) { EXPECT_EQ(limit_value(150), 100); }
+
+
+// ===== INTENTIONAL FAILURES FOR JENKINS DEMO =====
+
+// Actual result = 0
+TEST(Limit_Value_Tests, Limit_test_46) {
+    EXPECT_EQ(limit_value(-10), 10);
+}
+
+// Actual result = 25
+TEST(Limit_Value_Tests, Limit_test_47) {
+    EXPECT_EQ(limit_value(25), 30);
+}
+
+// Actual result = 75
+TEST(Limit_Value_Tests, Limit_test_48) {
+    EXPECT_EQ(limit_value(75), 70);
+}
+
+// Actual result = 100
+TEST(Limit_Value_Tests, Limit_test_49) {
+    EXPECT_EQ(limit_value(101), 101);
+}
+
+// Actual result = 100
+TEST(Limit_Value_Tests, Limit_test_50) {
+    EXPECT_EQ(limit_value(500), 500);
+}
