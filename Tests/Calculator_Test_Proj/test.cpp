@@ -164,15 +164,15 @@ TEST(Limit_Value_Tests, Limit_test_47) {
 
 // Actual result = 75
 TEST(Limit_Value_Tests, Limit_test_48) {
-    EXPECT_EQ(limit_value(75), 70);
+    EXPECT_EQ(limit_value(75), 75);
 }
 
 // Actual result = 100
 TEST(Limit_Value_Tests, Limit_test_49) {
-    EXPECT_EQ(limit_value(101), 101);
+    EXPECT_EQ(limit_value(101), 100);
 }
 
 // Actual result = 100
 TEST(Limit_Value_Tests, Limit_test_50) {
-    EXPECT_EQ(limit_value(500), 500);
+    EXPECT_EQ(limit_value(500), 100);
 }
