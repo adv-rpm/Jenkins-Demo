@@ -70,10 +70,10 @@ pipeline {
 
 
         }
-        stage('Test Stage')
-        {
-            parallel
-            {
+       // stage('Test Stage')
+       // {
+         //   parallel
+          //  {
                 stage('Static Analysis')
                 {
                     steps
@@ -100,7 +100,7 @@ pipeline {
                     {
                     bat '''
                     echo Building Test Project 
-                    %VS% %WORKSPACE%%TEST_PROJ% /Rebuild
+                    "%VS%" %WORKSPACE%%TEST_PROJ% /Rebuild
                     '''
                     }
                 }
@@ -131,7 +131,7 @@ pipeline {
                         }                    
                     }
                 }
-            }
-         }
+         //   }
+        // }
     }
 }
