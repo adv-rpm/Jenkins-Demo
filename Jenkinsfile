@@ -5,6 +5,8 @@ pipeline {
         BUILD_TOOL="C:\\Users\\HP\\AppData\\Local\\Keil_v5\\UV4\\UV4.exe"
         PRJ="Calc_Project.uvprojx"
         BUILD_LOG="Build_log.txt"
+        VS="C:\\Program Files\\Microsoft Visual Studio\\18\\Community\\Common7\\IDE\\devenv.exe"
+        TEST_PROJ="\\Tests\\Calculator_Test_Proj\\Calculator_Test_Proj.slnx"
     }
     stages
     {
@@ -17,6 +19,8 @@ pipeline {
                 echo 'Printing variables'
                 echo %BUILD_TOOL%
                 echo %PRJ%
+                echo %WORKSPACE%%TEST_PROJ%
+                echo %VS%
                 '''
             }
         }
@@ -90,18 +94,14 @@ pipeline {
                         }
                     }
                 }
-                stage('Unit Test')
+                stage('Unit Test Project Build')
                 {
                     steps
                     {
-                    bat 'echo running Unit tests' 
-                    }
-                    post
-                    {
-                        success
-                        {
-                        bat 'echo Completed Unit Testing'
-                        }
+                    bat '''
+                    echo Building Test Project 
+                    %VS% %WORKSPACE%%TEST_PROJ% /Rebuild
+                    '''
                     }
                 }
                 stage('Integration Test')
