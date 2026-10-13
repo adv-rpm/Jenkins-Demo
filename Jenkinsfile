@@ -118,7 +118,7 @@ pipeline {
                     steps
                     {
                         bat'''
-                        %WORKSPACE%%TEST_EXE% --gtest_output=xml:%WORKSPACE%
+                        %WORKSPACE%%TEST_EXE% --gtest_output=xml:%WORKSPACE%\\Unit_Test.xml
                         '''
                     }
                 }
