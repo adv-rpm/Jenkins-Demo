@@ -8,6 +8,7 @@ pipeline {
         VS="C:\\Program Files\\Microsoft Visual Studio\\18\\Community\\Common7\\IDE\\devenv.exe"
         TEST_PROJ="\\Tests\\Calculator_Test_Proj\\Calculator_Test_Proj.slnx"
         TEST_EXE="\\Tests\\Calculator_Test_Proj\\x64\\Debug\\Calculator_Test_Proj.exe"
+        UNIT_TEST_XML="Unit_Test.xml"
     }
     stages
     {
@@ -71,85 +72,63 @@ pipeline {
 
 
         }
-       // stage('Test Stage')
-       // {
-         //   parallel
-          //  {
-                stage('Static Analysis')
+        stage('Static Analysis')
+        {
+            steps
+            {
+            bat '''
+            @echo off
+            echo running Static tests
+            '''
+            }
+            post
+            {
+                success
                 {
-                    steps
-                    {
-                    bat '''
-                    @echo off
-                    echo running Static tests
-                    '''
-                    }
-                    post
-                    {
-                        success
-                        {
-                        bat '''
-                        @echo off 
-                        echo Completed Static Testing
-                        '''
-                        }
-                    }
+                bat '''
+                @echo off 
+                echo Completed Static Testing
+                '''
                 }
-                stage('Unit Test Project Build')
+            }
+        }
+        stage('Unit Test Project Build')
+        {
+            steps
+            {
+                bat '''
+                echo Building Test Project 
+                "%VS%" %WORKSPACE%%TEST_PROJ% /Rebuild
+                '''
+            }
+            post
+            {
+                always
                 {
-                    steps
-                    {
-                        bat '''
-                        echo Building Test Project 
-                        "%VS%" %WORKSPACE%%TEST_PROJ% /Rebuild
-                        '''
-                    }
-                    post
-                    {
-                        always
-                        {
-                            archiveArtifacts artifacts: 'Tests\\Calculator_Test_Proj\\x64\\Debug\\Calculator_Test_Proj.exe',
-                            fingerprint:true
-                        }
-                    }
+                    archiveArtifacts artifacts: 'Tests\\Calculator_Test_Proj\\x64\\Debug\\Calculator_Test_Proj.exe',
+                    fingerprint:true
                 }
-                stage('Unit Test Execution')
+            }
+        }
+        stage('Unit Test Execution')
+        {
+            steps
+            {
+                bat'''
+                %WORKSPACE%%TEST_EXE% --gtest_output=xml:%WORKSPACE%\\Unit_Test.xml
+                '''
+            }
+            post
+            {
+                always
                 {
-                    steps
-                    {
-                        bat'''
-                        %WORKSPACE%%TEST_EXE% --gtest_output=xml:%WORKSPACE%\\Unit_Test.xml
-                        '''
-                    }
+                    xunit (
+                        tools: [
+                            GoogleTest(pattern: 'Unit_Test.xml')
+                        ]
+                    )
                 }
-                stage('Integration Test')
-                {
-                    steps
-                    {
-                    bat 'echo running Integration tests' 
-                    }
-                    post
-                    {
-                        success
-                        {
-                        bat 'echo Completed Integration Testing'
-                        }                    }
-                }
-                stage('Qualification Tests')
-                {
-                    steps
-                    {
-                    bat 'echo running Qualification tests' 
-                    }
-                    post
-                    {
-                        success
-                        {
-                        bat 'echo Completed Qualification Testing'
-                        }                    
-                    }
-                }
-         //   }
-        // }
+            }
+        }
     }
 }
