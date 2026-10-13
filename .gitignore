@@ -1,1 +1,7 @@
 /Objects/*.*
+/Tests/Calculator_Test_Proj/.vs/*
+/Tests/Calculator_Test_Proj/packages/*
+/Tests/Calculator_Test_Proj/Debug/*
+/Tests/Calculator_Test_Proj/x64/*
+/Tests/Calculator_Test_Proj/.vs/*
+.vscode/*

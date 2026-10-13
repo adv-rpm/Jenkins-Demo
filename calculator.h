@@ -1,10 +1,19 @@
 #ifndef CALCULATOR_H
 #define CALCULATOR_H
 
-int add(int a, int b);
+#ifdef __cplusplus
+extern "C" {
+#endif
 
-int multiply(int a, int b);
 
-int limit_value(int value);
+	int add(int a, int b);
+	int sub(int a, int b);
+	int multiply(int a, int b);
+
+	int limit_value(int value);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif
