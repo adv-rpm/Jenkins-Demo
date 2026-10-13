@@ -72,8 +72,8 @@ pipeline {
 
 
         }
-        stage
-        {
+        //stages
+        //{
             parallel
             {
                 stage('Static Analysis')
@@ -142,6 +142,6 @@ pipeline {
                     }
                 }
             }
-        }
+       // }
     }
 }
