@@ -7,6 +7,7 @@ pipeline {
         BUILD_LOG="Build_log.txt"
         VS="C:\\Program Files\\Microsoft Visual Studio\\18\\Community\\Common7\\IDE\\devenv.exe"
         TEST_PROJ="\\Tests\\Calculator_Test_Proj\\Calculator_Test_Proj.slnx"
+        TEST_EXE="\\Tests\\Calculator_Test_Proj\\x64\\Debug\\Calculator_Test_Proj.exe"
     }
     stages
     {
@@ -98,10 +99,27 @@ pipeline {
                 {
                     steps
                     {
-                    bat '''
-                    echo Building Test Project 
-                    "%VS%" %WORKSPACE%%TEST_PROJ% /Rebuild
-                    '''
+                        bat '''
+                        echo Building Test Project 
+                        "%VS%" %WORKSPACE%%TEST_PROJ% /Rebuild
+                        '''
+                    }
+                    post
+                    {
+                        success
+                        {
+                            archiveArtifacts artifacts: '\\Tests\\Calculator_Test_Proj\\x64\\Debug\\Calculator_Test_Proj.exe',
+                            fingerprint:true
+                        }
+                    }
+                }
+                stage('Unit Test Execution')
+                {
+                    steps
+                    {
+                        bat'''
+                        %WORKSPACE%%TEST_EXE% --gtest_output=xml:%WORKSPACE%
+                        '''
                     }
                 }
                 stage('Integration Test')
