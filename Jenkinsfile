@@ -72,8 +72,8 @@ pipeline {
 
 
         }
-        //stages
-        //{
+        stage('Testing')
+        {
             parallel
             {
                 stage('Static Analysis')
@@ -99,49 +99,52 @@ pipeline {
 
                 stage('Unit Testing')
                 {
-                    stage ('Unit Test Porject Build')
+                    stages
                     {
-                        steps
+                        stage ('Unit Test Porject Build')
                         {
-                            bat '''
-                            echo Building Test Project 
-                            "%VS%" %WORKSPACE%%TEST_PROJ% /Rebuild
-                            '''
-                        }
-                        post
-                        {
-                            always
+                            steps
                             {
-                                archiveArtifacts artifacts: 'Tests\\Calculator_Test_Proj\\x64\\Debug\\Calculator_Test_Proj.exe',
-                                fingerprint:true
+                                bat '''
+                                echo Building Test Project 
+                                "%VS%" %WORKSPACE%%TEST_PROJ% /Rebuild
+                                '''
+                            }
+                            post
+                            {
+                                always
+                                {
+                                    archiveArtifacts artifacts: 'Tests\\Calculator_Test_Proj\\x64\\Debug\\Calculator_Test_Proj.exe',
+                                    fingerprint:true
+                                }
                             }
                         }
-                    }
-                    stage('Unit Test Execution')
-                    {
-                        steps
+                        stage('Unit Test Execution')
                         {
-                            bat'''
-                            %WORKSPACE%%TEST_EXE% --gtest_output=xml:%WORKSPACE%\\Unit_Test.xml
-                            '''
-                        }
-                        post
-                        {
-                            always
+                            steps
                             {
-                                /*xunit (
-                                    tools: [
-                                        GoogleTest(pattern: 'Unit_Test.xml')
-                                    ]
-                                )*/
+                                bat'''
+                                %WORKSPACE%%TEST_EXE% --gtest_output=xml:%WORKSPACE%\\Unit_Test.xml
+                                '''
+                            }
+                            post
+                            {
+                                always
+                                {
+                                    /*xunit (
+                                        tools: [
+                                            GoogleTest(pattern: 'Unit_Test.xml')
+                                        ]
+                                    )*/
 
-                                junit testResults:'Unit_Test.xml',
-                                skipPublishingChecks: true
+                                    junit testResults:'Unit_Test.xml',
+                                    skipPublishingChecks: true
+                                }
                             }
                         }
                     }
                 }
             }
-       // }
+        }
     }
 }
