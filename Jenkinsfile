@@ -128,7 +128,8 @@ pipeline {
                         ]
                     )*/
 
-                    junit 'Unit_Test.xml'
+                    junit 'Unit_Test.xml',
+                    skipPublishingChecks: true
                 }
             }
         }
