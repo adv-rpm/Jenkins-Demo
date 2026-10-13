@@ -176,3 +176,10 @@ TEST(Limit_Value_Tests, Limit_test_49) {
 TEST(Limit_Value_Tests, Limit_test_50) {
     EXPECT_EQ(limit_value(500), 100);
 }
+
+TEST(Limit_Value_Tests, Limit_test_50) { EXPECT_EQ(limit_value(101), 100); }
+TEST(Limit_Value_Tests, Limit_test_51) { EXPECT_EQ(limit_value(102), 100); }
+TEST(Limit_Value_Tests, Limit_test_52) { EXPECT_EQ(limit_value(105), 100); }
+TEST(Limit_Value_Tests, Limit_test_53) { EXPECT_EQ(limit_value(110), 100); }
+TEST(Limit_Value_Tests, Limit_test_54) { EXPECT_EQ(limit_value(120), 100); }
+TEST(Limit_Value_Tests, Limit_test_55) { EXPECT_EQ(limit_value(150), 100); }
