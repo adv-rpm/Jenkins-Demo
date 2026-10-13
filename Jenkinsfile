@@ -106,7 +106,7 @@ pipeline {
                     }
                     post
                     {
-                        success
+                        always
                         {
                             archiveArtifacts artifacts: 'Tests\\Calculator_Test_Proj\\x64\\Debug\\Calculator_Test_Proj.exe',
                             fingerprint:true
