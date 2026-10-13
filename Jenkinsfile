@@ -72,64 +72,74 @@ pipeline {
 
 
         }
-        stage('Static Analysis')
+        stage
         {
-            steps
+            parallel
             {
-            bat '''
-            @echo off
-            echo running Static tests
-            '''
-            }
-            post
-            {
-                success
+                stage('Static Analysis')
                 {
-                bat '''
-                @echo off 
-                echo Completed Static Testing
-                '''
+                    steps
+                    {
+                    bat '''
+                    @echo off
+                    echo running Static tests
+                    '''
+                    }
+                    post
+                    {
+                        success
+                        {
+                        bat '''
+                        @echo off 
+                        echo Completed Static Testing
+                        '''
+                        }
+                    }
                 }
-            }
-        }
-        stage('Unit Test Project Build')
-        {
-            steps
-            {
-                bat '''
-                echo Building Test Project 
-                "%VS%" %WORKSPACE%%TEST_PROJ% /Rebuild
-                '''
-            }
-            post
-            {
-                always
-                {
-                    archiveArtifacts artifacts: 'Tests\\Calculator_Test_Proj\\x64\\Debug\\Calculator_Test_Proj.exe',
-                    fingerprint:true
-                }
-            }
-        }
-        stage('Unit Test Execution')
-        {
-            steps
-            {
-                bat'''
-                %WORKSPACE%%TEST_EXE% --gtest_output=xml:%WORKSPACE%\\Unit_Test.xml
-                '''
-            }
-            post
-            {
-                always
-                {
-                    /*xunit (
-                        tools: [
-                            GoogleTest(pattern: 'Unit_Test.xml')
-                        ]
-                    )*/
 
-                    junit testResults:'Unit_Test.xml',
-                    skipPublishingChecks: true
+                stage('Unit Testing')
+                {
+                    stage ('Unit Test Porject Build')
+                    {
+                        steps
+                        {
+                            bat '''
+                            echo Building Test Project 
+                            "%VS%" %WORKSPACE%%TEST_PROJ% /Rebuild
+                            '''
+                        }
+                        post
+                        {
+                            always
+                            {
+                                archiveArtifacts artifacts: 'Tests\\Calculator_Test_Proj\\x64\\Debug\\Calculator_Test_Proj.exe',
+                                fingerprint:true
+                            }
+                        }
+                    }
+                    stage('Unit Test Execution')
+                    {
+                        steps
+                        {
+                            bat'''
+                            %WORKSPACE%%TEST_EXE% --gtest_output=xml:%WORKSPACE%\\Unit_Test.xml
+                            '''
+                        }
+                        post
+                        {
+                            always
+                            {
+                                /*xunit (
+                                    tools: [
+                                        GoogleTest(pattern: 'Unit_Test.xml')
+                                    ]
+                                )*/
+
+                                junit testResults:'Unit_Test.xml',
+                                skipPublishingChecks: true
+                            }
+                        }
+                    }
                 }
             }
         }
