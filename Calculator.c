@@ -3,7 +3,7 @@
 
 int add(int a, int b)
 {
-return a + 1;
+return a + b;
 }
 
 int sub(int a, int b)
